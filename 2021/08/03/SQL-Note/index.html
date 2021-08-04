@@ -6,17 +6,19 @@
   
   <title>SQL入门笔记 | SIDI&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="一，初识数据库数据库是将大量数据保存起来，通过计算机加工而成的可以 进行高效访问的数据集合。该数据集合称为数据库（Database，DB）。用来管理数据库的计算机系统称为数据库管理系统（Database Management System，DBMS）。1.1 DBMS的种类DBMS 主要通过数据的保存格式（数据库的种类）来进行分类，现阶段主要有以下 5 种类型. 层次数据库（Hierarchica">
+  <meta name="description" content="一，初识数据库数据库是将大量数据保存起来，通过计算机加工而成的可以 进行高效访问的数据集合。该数据集合称为数据库（Database，DB）。用来管理数据库的计算机系统称为数据库管理系统（Database Management System，DBMS）。 1.1 DBMS的种类DBMS 主要通过数据的保存格式（数据库的种类）来进行分类，现阶段主要有以下 5 种类型.  层次数据库（Hierarchi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL入门笔记">
 <meta property="og:url" content="http://example.com/2021/08/03/SQL-Note/index.html">
 <meta property="og:site_name" content="SIDI&#39;s Blog">
-<meta property="og:description" content="一，初识数据库数据库是将大量数据保存起来，通过计算机加工而成的可以 进行高效访问的数据集合。该数据集合称为数据库（Database，DB）。用来管理数据库的计算机系统称为数据库管理系统（Database Management System，DBMS）。1.1 DBMS的种类DBMS 主要通过数据的保存格式（数据库的种类）来进行分类，现阶段主要有以下 5 种类型. 层次数据库（Hierarchica">
+<meta property="og:description" content="一，初识数据库数据库是将大量数据保存起来，通过计算机加工而成的可以 进行高效访问的数据集合。该数据集合称为数据库（Database，DB）。用来管理数据库的计算机系统称为数据库管理系统（Database Management System，DBMS）。 1.1 DBMS的种类DBMS 主要通过数据的保存格式（数据库的种类）来进行分类，现阶段主要有以下 5 种类型.  层次数据库（Hierarchi">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/08/03/SQL-Note/%22./image/image_1_3%22">
 <meta property="article:published_time" content="2021-08-03T09:41:17.000Z">
-<meta property="article:modified_time" content="2021-08-03T09:52:59.723Z">
+<meta property="article:modified_time" content="2021-08-04T07:00:33.375Z">
 <meta property="article:author" content="Sidi Liang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/08/03/SQL-Note/%22./image/image_1_3%22">
   
     <link rel="alternate" href="/atom.xml" title="SIDI's Blog" type="application/atom+xml">
   
@@ -95,9 +97,22 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="一，初识数据库"><a href="#一，初识数据库" class="headerlink" title="一，初识数据库"></a>一，初识数据库</h1><p>数据库是将大量数据保存起来，通过计算机加工而成的可以 进行高效访问的数据集合。该数据集合称为数据库（Database，DB）。用来管理数据库的计算机系统称为数据库管理系统（Database Management System，DBMS）。<br>1.1 DBMS的种类<br>DBMS 主要通过数据的保存格式（数据库的种类）来进行分类，现阶段主要有以下 5 种类型.</p>
+        <h1 id="一，初识数据库"><a href="#一，初识数据库" class="headerlink" title="一，初识数据库"></a>一，初识数据库</h1><p>数据库是将大量数据保存起来，通过计算机加工而成的可以 进行高效访问的数据集合。该数据集合称为数据库（Database，DB）。用来管理数据库的计算机系统称为数据库管理系统（Database Management System，DBMS）。</p>
+<h2 id="1-1-DBMS的种类"><a href="#1-1-DBMS的种类" class="headerlink" title="1.1 DBMS的种类"></a>1.1 DBMS的种类</h2><p>DBMS 主要通过数据的保存格式（数据库的种类）来进行分类，现阶段主要有以下 5 种类型.</p>
+<blockquote>
 <p>层次数据库（Hierarchical Database，HDB）<br>关系数据库（Relational Database，RDB）<br>这种类型的 DBMS 称为关系数据库管理系统（Relational Database Management System，RDBMS）。比较具有代表性的 RDBMS 有如下 5 种。</p>
+</blockquote>
+<ul>
+<li>Oracle Database：甲骨文公司的RDBMS</li>
+<li>SQL Server：微软公司的RDBMS</li>
+<li>DB2：IBM公司的RDBMS</li>
+<li>PostgreSQL：开源的RDBMS</li>
+<li>MySQL：开源的RDBMS</li>
+</ul>
+<blockquote>
 <p>面向对象数据库（Object Oriented Database，OODB）<br>XML数据库（XML Database，XMLDB）<br>键值存储系统（Key-Value Store，KVS），举例：MongoDB</p>
+</blockquote>
+<h2 id="1-2-RDBMS的常见系统结构"><a href="#1-2-RDBMS的常见系统结构" class="headerlink" title="1.2 RDBMS的常见系统结构"></a>1.2 RDBMS的常见系统结构</h2><p>使用 RDBMS 时，最常见的系统结构就是客户端 / 服务器类型（C/S类型）这种结构（图 1-3）<br><img src="%22./image/image_1_3%22" alt="image_1_3"></p>
 
       
     </div>
