@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SQL入门笔记, 种梓的博客">
+    <meta name="keywords" content="SoftwareEngineer, 种梓的博客">
     <meta name="description" content="近期的笔记整理">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SQL入门笔记 | 种梓的博客</title>
+    <title>SoftwareEngineer | 种梓的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -244,12 +244,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SQL入门笔记</h1>
+                    <h1 class="description center-align post-title">SoftwareEngineer</h1>
                 </div>
             </div>
         </div>
@@ -393,222 +393,313 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><em>本笔记摘自<a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/forum/postDetail?spm=5176.20222307.J_9059755190.2.65504cb3DQB8MW&postId=163421">天池龙珠计划SQL训练营 Task01</a></em>  </p>
-<h1 id="一，初识数据库"><a href="#一，初识数据库" class="headerlink" title="一，初识数据库"></a>一，初识数据库</h1><p>数据库是将大量数据保存起来，通过计算机加工而成的可以 进行高效访问的数据集合。该数据集合称为数据库（Database，DB）。用来管理数据库的计算机系统称为数据库管理系统（Database Management System，DBMS）。</p>
-<h2 id="1-1-DBMS的种类"><a href="#1-1-DBMS的种类" class="headerlink" title="1.1 DBMS的种类"></a>1.1 DBMS的种类</h2><p>DBMS 主要通过数据的保存格式（数据库的种类）来进行分类，现阶段主要有以下 5 种类型.</p>
+                <h1 id="软件的概念"><a href="#软件的概念" class="headerlink" title="软件的概念"></a>软件的概念</h1><p>先说明软件和程序存在差别：  </p>
+<pre><code>软件 = 程序 + 数据 + 文档 + （服务）
+
+程序 = 数据结构 + 算法
+</code></pre>
 <ul>
-<li><p>层次数据库（Hierarchical Database，HDB）</p>
-</li>
-<li><p>关系数据库（Relational Database，RDB）<br>这种类型的 DBMS 称为关系数据库管理系统（Relational Database Management System，RDBMS）。比较具有代表性的 RDBMS 有如下 5 种。</p>
-<ul>
-<li>Oracle Database：甲骨文公司的RDBMS</li>
-<li>SQL Server：微软公司的RDBMS</li>
-<li>DB2：IBM公司的RDBMS</li>
-<li>PostgreSQL：开源的RDBMS</li>
-<li>MySQL：开源的RDBMS</li>
+<li>软件是能够完成预定功能和性能的、可执行的计算机指令；</li>
+<li>软件是使得程序能够适当地处理信息的数据结构；</li>
+<li>软件是描述程序的操作和使用的文档。</li>
+</ul>
+<h1 id="软件的逻辑抽象性"><a href="#软件的逻辑抽象性" class="headerlink" title="软件的逻辑抽象性"></a>软件的逻辑抽象性</h1><p>软件是一种逻辑实体，具备知识性的产品集合，是对物理世界的一种抽象化，同时又是一种人脑智力的成果，开发成本昂贵但可以复制。</p>
+<p>而软件问题都是在软件开发和修改过程中引入的，开发工作仍未完全摆脱手工作坊式的低效开发方式。软件测试则是为了最小化软件问题和风险。</p>
+<h1 id="软件分类"><a href="#软件分类" class="headerlink" title="软件分类"></a>软件分类</h1><ul>
+<li>系统软件<ul>
+<li>操作系统，数据库管理软件，设备驱动程序，通信处理程序等</li>
 </ul>
 </li>
-<li><p>面向对象数据库（Object Oriented Database，OODB）</p>
+<li>应用软件<ul>
+<li>事物软件，实时软件，工程和科学软件，嵌入式软件，娱乐如那件，个人计算机软件，热工只能软件</li>
+</ul>
 </li>
-<li><p>XML数据库（XML Database，XMLDB）</p>
-</li>
-<li><p>键值存储系统（Key-Value Store，KVS），举例：MongoDB</p>
+<li>工具软件 <ul>
+<li>文本编辑软件，文件格式化软件，数据传输软件，程序库系统以及支持需求分析，设计，实现，测试和支持管理的软件等</li>
+</ul>
 </li>
 </ul>
-<h2 id="1-2-RDBMS的常见系统结构"><a href="#1-2-RDBMS的常见系统结构" class="headerlink" title="1.2 RDBMS的常见系统结构"></a>1.2 RDBMS的常见系统结构</h2><p>使用 RDBMS 时，最常见的系统结构就是客户端 / 服务器类型（C/S类型）这种结构（图 1-3）<br><img src="%22image_1_3.jpg%22"></p>
-<h2 id="1-3-本地MySQL环境搭建方法"><a href="#1-3-本地MySQL环境搭建方法" class="headerlink" title="1.3 本地MySQL环境搭建方法"></a>1.3 本地MySQL环境搭建方法</h2><p>在code上需要安装database plugin，连接的时候默认local host</p>
-<h1 id="二、初识-SQL"><a href="#二、初识-SQL" class="headerlink" title="二、初识 SQL"></a>二、初识 SQL</h1><h2 id="2-1-概念介绍"><a href="#2-1-概念介绍" class="headerlink" title="2.1 概念介绍"></a>2.1 概念介绍</h2><p>数据库中存储的表结构类似于excel中的行和列，在数据库中，行称为记录，它相当于一条记录，列称为字段，它代表了表中存储的数据项目。</p>
-<p>行和列交汇的地方称为单元格，一个单元格中只能输入一条记录。</p>
-<p>SQL是为操作数据库而开发的语言。国际标准化组织（ISO）为 SQL 制定了相应的标准，以此为基准的SQL 称为标准 SQL（相关信息请参考专栏——标准 SQL 和特定的 SQL）。</p>
-<p>完全基于标准 SQL 的 RDBMS 很少，通常需要根据不同的 RDBMS 来编写特定的 SQL 语句，原则上，本课程介绍的是标准 SQL 的书写方式。</p>
-<p>根据对 RDBMS 赋予的指令种类的不同，SQL 语句可以分为以下三类.</p>
+<h1 id="软件产品的组成"><a href="#软件产品的组成" class="headerlink" title="软件产品的组成"></a>软件产品的组成</h1><ul>
+<li>客户需求文档 -Customer Requirements</li>
+<li>市场需求文档 -MRD (Marketing Requirement Documents)</li>
+<li>软件规格说明书 -Specificaitons</li>
+<li>技术设计文档 -Technical Design Documents</li>
+<li>测试文档 -Test Documents</li>
+<li>在线帮助 -Online Assistance</li>
+<li>产品发布注释 - Release Note/Read Me</li>
+<li>产品软件包 -Release Packages</li>
+</ul>
+<h1 id="软件危机"><a href="#软件危机" class="headerlink" title="软件危机"></a>软件危机</h1><h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><ul>
+<li><p>早期软件开发的特点</p>
+<ul>
+<li>软件规模相对较小</li>
+<li>程序设计时一门技艺</li>
+<li>缺少软件开发工具的支持</li>
+<li>缺乏软件开发管理的理论与方法</li>
+<li>缺乏有效的软件开发后的维护</li>
+</ul>
+</li>
+<li><p>软件危机的根源</p>
+<ul>
+<li>软件的大量需求与软件生产力效率之间的矛盾</li>
+<li>软件系统的复杂性与软件开发之间的矛盾</li>
+</ul>
+</li>
+<li><p>软件本身的特点</p>
+<ul>
+<li>软件是一种抽象逻辑</li>
+<li>软件是开发人员的智力劳动成果</li>
+<li>软件具备强烈的个性化特征</li>
+<li>软件规模日趋庞大，实现的业务逻辑与复杂流程</li>
+</ul>
+</li>
+</ul>
+<h2 id="成因"><a href="#成因" class="headerlink" title="成因"></a>成因</h2><ul>
+<li>软件开发额客观因素<ul>
+<li>系统需求分析不足</li>
+<li>开发周期管理不善</li>
+<li>开发过程缺乏规范</li>
+<li>质量控制标准规程滞后</li>
+<li>软件维护计划被忽视</li>
+</ul>
+</li>
+<li>软件开发的产业因素<ul>
+<li>软件企业的作坊式管理</li>
+<li>软件企业规模的急剧膨胀</li>
+</ul>
+</li>
+</ul>
+<h1 id="软件危机的解决途径"><a href="#软件危机的解决途径" class="headerlink" title="软件危机的解决途径"></a>软件危机的解决途径</h1><ul>
+<li>正确认识计算机软件的内涵</li>
+<li>采用工程项目管理方法实施软件开发的组织管理<ul>
+<li>软件开发应该是一种组织良好，管理严密，协同配合的工程活动</li>
+</ul>
+</li>
+<li>采用成熟的软件开发技术和方法，开发和使用适当的软件工具</li>
+</ul>
+<h1 id="软件开发和软件工程"><a href="#软件开发和软件工程" class="headerlink" title="软件开发和软件工程"></a>软件开发和软件工程</h1><h2 id="软件开发的基本过程"><a href="#软件开发的基本过程" class="headerlink" title="软件开发的基本过程"></a>软件开发的基本过程</h2><ol>
+<li>软件计划，确定产品定位和目标人群。</li>
+<li>软件需求分析：根据客户需求，制定客户需求的产品功能，特性，性能，界面和具体规格。</li>
+<li>根据需求进行设计：概要设计和详细设计。</li>
+<li>编程实现并运行。</li>
+<li>软件测试：确认用户需求，对设计和实现结果进行验证。</li>
+<li>维护：维持软件运行，修改软件缺陷，增强完善功能，不断迭代软件版本。</li>
+</ol>
+<h2 id="软件开发成本"><a href="#软件开发成本" class="headerlink" title="软件开发成本"></a>软件开发成本</h2><table border=0 cellpadding=0 cellspacing=0 width=332 style='border-collapse:
+ collapse;table-layout:fixed;width:250pt'>
+ <col width=114 style='mso-width-source:userset;mso-width-alt:3979;width:86pt'>
+ <col width=90 style='mso-width-source:userset;mso-width-alt:3153;width:68pt'>
+ <col width=64 span=2 style='width:48pt'>
+ <tr height=20 style='height:14.75pt'>
+  <td rowspan=2 height=40 class=xl65 width=114 style='height:29.5pt;width:86pt'>&#36719;&#20214;&#31867;&#22411;</td>
+  <td colspan=3 class=xl65 width=218 style='width:164pt'>&#24320;&#21457;&#25104;&#26412;&#30340;&#38454;&#27573;&#20998;&#24067;</td>
+ </tr>
+ <tr height=20 style='height:14.75pt'>
+  <td height=20 class=xl65 style='height:14.75pt'>&#38656;&#27714;&#19982;&#35774;&#35745;</td>
+  <td class=xl65>&#23454;&#29616;</td>
+  <td class=xl65>&#27979;&#35797;</td>
+ </tr>
+ <tr height=20 style='height:14.75pt'>
+  <td height=20 class=xl65 style='height:14.75pt'>&#25511;&#21046;&#36719;&#20214;</td>
+  <td class=xl65>46</td>
+  <td class=xl65>20</td>
+  <td class=xl65>34</td>
+ </tr>
+ <tr height=20 style='height:14.75pt'>
+  <td height=20 class=xl65 style='height:14.75pt'>&#33322;&#31354;&#33322;&#22825;&#36719;&#20214;</td>
+  <td class=xl65>34</td>
+  <td class=xl65>20</td>
+  <td class=xl65>46</td>
+ </tr>
+ <tr height=20 style='height:14.75pt'>
+  <td height=20 class=xl65 style='height:14.75pt'>&#25805;&#20316;&#31995;&#32479;</td>
+  <td class=xl65>33</td>
+  <td class=xl65>17</td>
+  <td class=xl65>50</td>
+ </tr>
+ <tr height=20 style='height:14.75pt'>
+  <td height=20 class=xl65 style='height:14.75pt'>&#31185;&#25216;&#35745;&#31639;&#36719;&#20214;</td>
+  <td class=xl65>44</td>
+  <td class=xl65>26</td>
+  <td class=xl65>30</td>
+ </tr>
+ <tr height=20 style='height:14.75pt'>
+  <td height=20 class=xl65 style='height:14.75pt'>&#21830;&#19994;&#24212;&#29992;&#36719;&#20214;</td>
+  <td class=xl65>44</td>
+  <td class=xl65>28</td>
+  <td class=xl65>28</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=114 style='width:86pt'></td>
+  <td width=90 style='width:68pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+<h2 id="软件的修改成本随时间变化的趋势"><a href="#软件的修改成本随时间变化的趋势" class="headerlink" title="软件的修改成本随时间变化的趋势"></a>软件的修改成本随时间变化的趋势</h2><p><img src="SoftwareEngineer/modifying.png" alt="Modifying_cost"></p>
+<h1 id="软降工程要点"><a href="#软降工程要点" class="headerlink" title="软降工程要点"></a>软降工程要点</h1><ol>
+<li><p>软件工程开发是一个有计划，分阶段，严格按照标准或规范进行的工程活动</p>
+</li>
+<li><p>软件工程将系统的，规范的，可度量的方法应用于软件开发，运行和维护的工程</p>
+</li>
+<li><p>采用适当的软件开发方法和支持环境以及编程语言来表示和支持软件开发各个阶段的各种活动，并使开发过程条令化，规范化，使软件产品标准化，开发人员专业化</p>
+</li>
+<li><p>用工程学的观点进行费用估计，制定进度和计划； 用管理科学中的方法和原理进行软件生产管理；用数学的方法建立软件开发中的各种模型和各种算法。</p>
+</li>
+</ol>
+<h1 id="软件工程原则"><a href="#软件工程原则" class="headerlink" title="软件工程原则"></a>软件工程原则</h1><ul>
+<li><p>采用适宜的开发模型</p>
+<ul>
+<li>比如能够适应易变的用户需求</li>
+</ul>
+</li>
+<li><p>采用合适的设计方法</p>
+<ul>
+<li>需要软件模块化，抽象与信息隐藏，局部化，一致性以及适应性等，需要合适的设计方法的支持</li>
+</ul>
+</li>
+<li><p>提供高质量的工程支持</p>
+<ul>
+<li>软件工程过程需要软件工具和环境支持</li>
+</ul>
+</li>
+<li><p>重视开发过程管理</p>
+<ul>
+<li>资源的有效利用，产品的目标管理，软件的生产效率额提高等</li>
+</ul>
+</li>
+</ul>
+<h1 id="软件工程的目标"><a href="#软件工程的目标" class="headerlink" title="软件工程的目标"></a>软件工程的目标</h1><ul>
+<li><p>软件工程的目标是生产具有正确性，可用性以及开销适宜，进度保证，并且项目成功的软件产品。软件工程目标决定里软件工程过程，过程模型（软件周期模型）和工程方法的选择。</p>
 <ol>
-<li><p>DDL<br>DDL（Data Definition Language，数据定义语言） 用来创建或者删除存储数据用的数据库以及数据库中的表等对象。DDL 包含以下几种指令。</p>
-<ul>
-<li><p>CREATE ： 创建数据库和表等对象</p>
-</li>
-<li><p>DROP ： 删除数据库和表等对象</p>
-</li>
-<li><p>ALTER ： 修改数据库和表等对象的结构</p>
-</li>
+<li>正确性<ul>
+<li>软件产品达到预期功能及性能的程度</li>
 </ul>
 </li>
-<li><p>DML<br>DML（Data Manipulation Language，数据操纵语言） 用来查询或者变更表中的记录。DML 包含以下几种指令。</p>
-<ul>
-<li><p>SELECT ：查询表中的数据</p>
-</li>
-<li><p>INSERT ：向表中插入新数据</p>
-</li>
-<li><p>UPDATE ：更新表中的数据</p>
-</li>
-<li><p>DELETE ：删除表中的数据</p>
-</li>
+<li>可用性<ul>
+<li>软件基本结构，实现及文档为用户可用的程度</li>
 </ul>
 </li>
-<li><p>DCL<br>DCL（Data Control Language，数据控制语言） 用来确认或者取消对数据库中的数据进行的变更。除此之外，还可以对 RDBMS 的用户是否有权限操作数据库中的对象（数据库表等）进行设定。DCL 包含以下几种指令。</p>
-<ul>
-<li><p>COMMIT ： 确认对数据库中的数据进行的变更</p>
+<li>经济性<ul>
+<li>软件开发，运行的整体耗费（包括资金耗费和时间耗费）满足用户的要求程度</li>
+</ul>
 </li>
-<li><p>ROLLBACK ： 取消对数据库中的数据进行的变更</p>
-</li>
-<li><p>GRANT ： 赋予用户操作权限</p>
-</li>
-<li><p>REVOKE ： 取消用户的操作权限</p>
-</li>
+<li>软件项目成功标识<ul>
+<li>开发成本低，功能与性能满足需求，易于移植，维护方便，按时完成开发任务并及时交付软件产品</li>
 </ul>
 </li>
 </ol>
-<h2 id="2-2-SQL的基本书写规则"><a href="#2-2-SQL的基本书写规则" class="headerlink" title="2.2 SQL的基本书写规则"></a>2.2 SQL的基本书写规则</h2><ul>
-<li>SQL语句要以分号（ ; ）结尾</li>
-<li>SQL 不区分关键字的大小写，但是插入到表中的数据是区分大小写的</li>
-<li>win 系统默认不区分表名及字段名的大小写</li>
-<li>linux / mac 默认严格区分表名及字段名的大小写</li>
-<li>常数的书写方式是固定的</li>
-<li>单词需要用半角空格或者换行来分隔</li>
+</li>
 </ul>
-<p>SQL 语句的单词之间需使用半角空格或换行符来进行分隔，且不能使用全角空格作为单词的分隔符，否则会发生错误，出现无法预期的结果。</p>
-<h2 id="2-3-数据库的创建（-CREATE-DATABASE-语句）"><a href="#2-3-数据库的创建（-CREATE-DATABASE-语句）" class="headerlink" title="2.3 数据库的创建（ CREATE DATABASE 语句）"></a>2.3 数据库的创建（ CREATE DATABASE 语句）</h2><p>语法:  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE &lt; 数据库名称 &gt; ;</span><br></pre></td></tr></table></figure>
-
-<p>举例：  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE shop ;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-4-表的创建（-CREATE-TABLE-语句）"><a href="#2-4-表的创建（-CREATE-TABLE-语句）" class="headerlink" title="2.4 表的创建（ CREATE TABLE 语句）"></a>2.4 表的创建（ CREATE TABLE 语句）</h2><p>语法：  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &lt; 表名 &gt;</span><br><span class="line">( &lt; 列名 1&gt; &lt; 数据类型 &gt; &lt; 该列所需约束 &gt; ,</span><br><span class="line">&lt; 列名 2&gt; &lt; 数据类型 &gt; &lt; 该列所需约束 &gt; ,</span><br><span class="line">&lt; 列名 3&gt; &lt; 数据类型 &gt; &lt; 该列所需约束 &gt; ,</span><br><span class="line">&lt; 列名 4&gt; &lt; 数据类型 &gt; &lt; 该列所需约束 &gt; ,</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">&lt; 该表的约束 1&gt; , &lt; 该表的约束 2&gt; ,……);</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-5-命名规则"><a href="#2-5-命名规则" class="headerlink" title="2.5 命名规则"></a>2.5 命名规则</h2><pre><code>* 只能使用半角英文字母、数字、下划线（_）作为数据库、表和列的名称
-* 名称必须以半角英文字母开头
-</code></pre>
-<h2 id="2-6-数据类型的指定"><a href="#2-6-数据类型的指定" class="headerlink" title="2.6 数据类型的指定"></a>2.6 数据类型的指定</h2><p>数据库创建的表，所有的列都必须指定数据类型，每一列都不能存储与该列数据类型不符的数据。</p>
-<p>四种最基本的数据类型</p>
-<pre><code>* INTEGER 型
-</code></pre>
-<p>用来指定存储整数的列的数据类型（数字型），不能存储小数。</p>
-<pre><code>* CHAR 型
-</code></pre>
-<p>用来存储定长字符串，当列中存储的字符串长度达不到最大长度的时候，使用半角空格进行补足，由于会浪费存储空间，所以一般不使用。</p>
-<pre><code>* VARCHAR 型
-</code></pre>
-<p>用来存储可变长度字符串，定长字符串在字符数未达到最大长度时会用半角空格补足，但可变长字符串不同，即使字符数未达到最大长度，也不会用半角空格补足。</p>
-<pre><code>* DATE 型
-</code></pre>
-<p>用来指定存储日期（年月日）的列的数据类型（日期型）。</p>
-<h2 id="2-6-数据类型的指定-1"><a href="#2-6-数据类型的指定-1" class="headerlink" title="2.6 数据类型的指定"></a>2.6 数据类型的指定</h2><p>数据库创建的表，所有的列都必须指定数据类型，每一列都不能存储与该列数据类型不符的数据。</p>
-<p>四种最基本的数据类型</p>
+<h1 id="软件开发方法"><a href="#软件开发方法" class="headerlink" title="软件开发方法"></a>软件开发方法</h1><ol>
+<li><p>软件开发方法研究如何在规定的投资和时间内，开发出符合用户需求的高质量的软件产品</p>
+</li>
+<li><p>软件开发方法是一种使用预先定义的技术集及符号来组织软件生产过程的方法</p>
 <ul>
-<li><p>INTEGER型<br>用来指定存储整数的列的数据类型（数字型），不能存储小数。</p>
-</li>
-<li><p>CHAR型<br>用来存储定长字符串，当列中存储的字符串长度达不到最大长度的时候，使用半角空格进行补足，由于会浪费存储空间，所以一般不使用。</p>
-</li>
-<li><p>VARCHAR型<br>用来存储可变长度字符串，定长字符串在字符数未达到最大长度时会用半角空格补足，但可变长字符串不同，即使字符串未达到最大长度，也不用半角空格补足。</p>
-</li>
-<li><p>DATE型<br>用来指定存储日期（年月日）的列的数据类型（日期型）。</p>
-</li>
+<li>包括: 项目计划与估算，软件系统需求与分析，数据结构，系统总体的设计，算法的设计，编码，测试以及维护等</li>
 </ul>
-<h2 id="2-7-约束的设置"><a href="#2-7-约束的设置" class="headerlink" title="2.7 约束的设置"></a>2.7 约束的设置</h2><p>约束是除了数据类型之外，对存储的数据进行限制或追加条件的功能。<br>NOT NULL 是非空约束，即该列必须输入数据<br>PRIMARY KEY 是主键约束，代表该列是唯一值，可以通过该列取出特定的行的数据。</p>
-<h2 id="2-8-表的删除和更新"><a href="#2-8-表的删除和更新" class="headerlink" title="2.8 表的删除和更新"></a>2.8 表的删除和更新</h2><ul>
-<li>删除表的语法：<br><code>DROP TABLE &lt; 表名 &gt; ;</code></li>
-</ul>
-<p>需要特别注意的是，删除的表是无法恢复的，只能重新插入，请执行删除操作时无比要谨慎。</p>
+</li>
+<li><p>软件开发方法主要有</p>
 <ul>
-<li><p>添加列的 ALTER TABLE 语句:<br><code>ALTER TABLE &lt; 表名 &gt; ADD COLUMN &lt; 列的定义 &gt;;</code></p>
+<li>面向数据流的结构化程序开发方法</li>
+<li>面向数据结构的开发方法（Jackson方法）</li>
+<li>基于模型的开发方法</li>
+<li>面向对象的开发方法</li>
+</ul>
 </li>
-<li><p>删除列的 ALTER TABLE 语句<br><code>ALTER TABLE &lt; 表名 &gt; DROP COLUMN &lt; 列名 &gt;;</code></p>
+</ol>
+<h1 id="软件生命周期模型"><a href="#软件生命周期模型" class="headerlink" title="软件生命周期模型"></a>软件生命周期模型</h1><h2 id="软件的生命周期"><a href="#软件的生命周期" class="headerlink" title="软件的生命周期"></a>软件的生命周期</h2><ul>
+<li>可行性分析与计划阶段<ul>
+<li>确定软件开发的总体目标，给出功能，性能，可靠性以及接口方面的要求，完成可行性分析。</li>
+<li>估计软件开发所需要利用的各种资源，效益，成本，开发进度，制定开发计划</li>
+<li>提交可行性分析报告，开发计划文档。</li>
+</ul>
 </li>
 </ul>
-<p>ALTER TABLE 语句和 DROP TABLE 语句一样，执行之后无法恢复。误添的列可以通过 ALTER TABLE 语句删除，或者将表全部删除之后重新再创建。</p>
+<h2 id="需求分析阶段"><a href="#需求分析阶段" class="headerlink" title="需求分析阶段"></a>需求分析阶段</h2><ul>
+<li>分析用户提出的要求，给出需求详细定义，确定软件系统的各项功能，性能需求和设计约束，确定对文档编制的要求。</li>
+<li>提交软件需求说明，软件规格说明，数据要求说明等文档和初步用户手册。<h2 id="设计阶段"><a href="#设计阶段" class="headerlink" title="设计阶段"></a>设计阶段</h2></li>
+<li>概要设计：把各项需求转换成软件的体系结构，结构中的每一部分都是意义明确的模块，每个模块与某些需求对应/</li>
+<li>详细设计：对每个模块所完成的工作进行具体的描述，提供源程序编写的直接依据。</li>
+<li>提交结构设计说明，详细设计说明和测试计划初稿等文档。<h2 id="实现阶段"><a href="#实现阶段" class="headerlink" title="实现阶段"></a>实现阶段</h2></li>
+<li>完成源代码的编码实现。保证程序结构良好，清晰易读，与设计一致。<br>编写进度日报，周报和月报（取决于项目的重要性和规模）</li>
+<li>提交用户手册，操作手册等面向用户的文档编写工作<br>提交测试计划<h2 id="测试阶段"><a href="#测试阶段" class="headerlink" title="测试阶段"></a>测试阶段</h2></li>
+<li>全面测试目标软件系统，检查审阅与编制的文档，提交测试分析报告。逐项评价所生产的程序，文档以及开发工作本身，提交项目开发总结报告。</li>
+<li>开发过程中（前5阶段），开发集体需要按月编写开发进度月报。<h2 id="运行与维护阶段"><a href="#运行与维护阶段" class="headerlink" title="运行与维护阶段"></a>运行与维护阶段</h2></li>
+<li>软件提交给用户后，在运行使用过程中得到持续维护，根据用户的新需求进行必要的软件修改和升级。</li>
+<li>软件维护包括正性维护（发现错误），适应性维护（适应运行环境变化）和完善性维护（增强功能）</li>
+</ul>
+<h1 id="软件生命周期模型SDM"><a href="#软件生命周期模型SDM" class="headerlink" title="软件生命周期模型SDM"></a>软件生命周期模型SDM</h1><h2 id="常见模型"><a href="#常见模型" class="headerlink" title="常见模型"></a>常见模型</h2><ul>
+<li><p>软件生命周期常见模型包括</p>
+<ol>
+<li>瀑布模型（Waterfall Model)</li>
+<li>V-W 模型（V Model and W Model)</li>
+<li>快速应用开发型（RAD Model)</li>
+<li>原型模型（Prototype Model)</li>
+<li>增量/演化/迭代模型（Increment Model)</li>
+<li>螺旋模型（Spiral Model)</li>
+<li>喷泉模型（Fountain Model, Object-Oriented model）</li>
+<li>基于构件的开发模型（CBSD Model)</li>
+<li>Rationa统一过程模型（RUP Model）</li>
+<li>敏捷开发模型与极限编程（Agile Modeling and XP)</li>
+</ol>
+</li>
+</ul>
 <ul>
-<li><p>清空表内容<br><code>TRUNCATE TABLE TABLE_NAME;</code><br>优点：相比drop<code>/</code>delete，truncate用来清除数据时，速度最快。</p>
-</li>
-<li><p>数据的更新</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UPDATE &lt;表名&gt;</span><br><span class="line">SET &lt;列名&gt; = &lt;表达式&gt; [, &lt;列名2&gt;=&lt;表达式2&gt;...];  </span><br><span class="line">WHERE &lt;条件&gt;;  -- 可选，非常重要。</span><br><span class="line">ORDER BY 子句;  --可选</span><br><span class="line">LIMIT 子句; --可选</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>__使用 update 时要注意添加 where 条件，否则将会将所有的行按照语句修改 __ </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 修改所有的注册时间</span><br><span class="line">UPDATE product</span><br><span class="line">SET regist_date = &#x27;2009-10-10&#x27;;  </span><br><span class="line">-- 仅修改部分商品的单价</span><br><span class="line">UPDATE product</span><br><span class="line">SET sale_price = sale_price * 10</span><br><span class="line">WHERE product_type = &#x27;厨房用具&#x27;;  </span><br></pre></td></tr></table></figure>
-
-
-<p> <em>使用 UPDATE 也可以将列更新为 NULL（该更新俗称为NULL清空）。此时只需要将赋值表达式右边的值直接写为 NULL 即可。</em></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 将商品编号为0008的数据（圆珠笔）的登记日期更新为NULL  </span><br><span class="line">UPDATE product</span><br><span class="line">SET regist_date = NULL</span><br><span class="line">WHERE product_id = &#x27;0008&#x27;;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> 和 INSERT 语句一样， UPDATE 语句也可以将 NULL 作为一个值来使用。<br>__ 但是，只有未设置 NOT NULL 约束和主键约束的列才可以清空为NULL。__如果将设置了上述约束的列更新为 NULL，就会出错，这点与INSERT 语句相同。</p>
+<li><p>瀑布模型（Waterfall Model)</p>
+<p>  <img src="SoftwareEngineer/waterfall.png" alt="waterfal"></p>
 <ul>
-<li>多列更新</li>
+<li><p>瀑布模型中的每一个开发活动具有下列特征：</p>
+<ol>
+<li><p>本阶段活动的工作对象来自于上一项活动的输出，这些输出一般是代表本阶段活动结束的里程碑式的文档</p>
+</li>
+<li><p>根据本阶段的活动规程执行相应的任务</p>
+</li>
+<li><p>本阶段活动产出相关的软件工件，作为下一阶段活动的输入。</p>
+</li>
+<li><p>对本阶段活动执行情况进行评审</p>
+</li>
+</ol>
+</li>
+<li><p>瀑布模型的优点：</p>
+<ol>
+<li>降低软件开发的复杂程度，提高软件开发过程的透明性，提高软件开发过程的可管理性</li>
+<li>推迟软件实现，强调在软件实现前必须进行分析和设计工作</li>
+<li>以项目的阶段评审和文档控制为手段有效地对整个开发过程进行指导，保证了阶段之间的正确衔接，能够及时发现并纠正开发过程中存在的缺陷，使产品达到预期的质量要求</li>
+</ol>
+</li>
+<li><p>瀑布模型的缺点：</p>
+<ol>
+<li>强调过程活动的线性顺序</li>
+<li>缺乏灵活性，特别是无法解决软件需求不明确或不准确的问题</li>
+<li>风险控制能力较弱</li>
+<li>瀑布模型中的软件活动是文档驱动的，当阶段之间规定过多的文档时，会极大地增加系统的工作量</li>
+<li>管理人员如果仅仅以文档的完成情况来评估项目完成进度，往往会产生错误的结论</li>
+</ol>
+</li>
 </ul>
-<p>UPDATE 语句的 SET 子句支持同时将多个列作为更新对象。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 基础写法，一条UPDATE语句只更新一列</span><br><span class="line">UPDATE product</span><br><span class="line">SET sale_price = sale_price * 10</span><br><span class="line">WHERE product_type = &#x27;厨房用具&#x27;;</span><br><span class="line">UPDATE product</span><br><span class="line">SET purchase_price = purchase_price / 2</span><br><span class="line">WHERE product_type = &#x27;厨房用具&#x27;;  </span><br></pre></td></tr></table></figure>
-
-<p>该写法可以得到正确结果，但是代码较为繁琐。可以采用合并的方法来简化代码。</p>
-<p>需要明确的是，SET 子句中的列不仅可以是两列，还可以是三列或者更多。</p>
-<h2 id="2-9-向-product-表中插入数据"><a href="#2-9-向-product-表中插入数据" class="headerlink" title="2.9 向 product 表中插入数据"></a>2.9 向 product 表中插入数据</h2><p>为了学习INSERT语句用法，我们首先创建一个名为productins的表，建表语句如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE productins</span><br><span class="line">(product_id    CHAR(4)      NOT NULL,</span><br><span class="line">product_name   VARCHAR(100) NOT NULL,</span><br><span class="line">product_type   VARCHAR(32)  NOT NULL,</span><br><span class="line">sale_price     INTEGER      DEFAULT 0,</span><br><span class="line">purchase_price INTEGER ,</span><br><span class="line">regist_date    DATE ,</span><br><span class="line">PRIMARY KEY (product_id)); </span><br></pre></td></tr></table></figure>
-
-<p>基本语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO &lt;表名&gt; (列1, 列2, 列3, ……) VALUES (值1, 值2, 值3, ……);  </span><br></pre></td></tr></table></figure>
-
-
-<p>对表进行全列 INSERT 时，可以省略表名后的列清单。这时 VALUES子句的值会默认按照从左到右的顺序赋给每一列。</p>
-<p>原则上，执行一次 INSERT 语句会插入一行数据。插入多行时，通常需要循环执行相应次数的 INSERT 语句。其实很多 RDBMS 都支持一次插入多行数据</p>
-<p>INSERT 语句中想给某一列赋予 NULL 值时，可以直接在 VALUES子句的值清单中写入 NULL。想要插入 NULL 的列一定不能设置 NOT NULL 约束。</p>
-<p>还可以向表中插入默认值（初始值）。可以通过在创建表的CREATE TABLE 语句中设置DEFAULT约束来设定默认值。</p>
-<p>可以使用INSERT … SELECT 语句从其他表复制数据。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-- 将商品表中的数据复制到商品复制表中</span><br><span class="line">INSERT INTO productocpy (product_id, product_name, product_type, sale_price, purchase_price, regist_date)</span><br><span class="line">SELECT product_id, product_name, product_type, sale_price, </span><br><span class="line">purchase_price, regist_date</span><br><span class="line">FROM Product;  </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="三、练习题"><a href="#三、练习题" class="headerlink" title="三、练习题"></a>三、练习题</h1><p><em>笔记以及练习题摘自<a href="%22https://tianchi.aliyun.com/forum/postDetail?spm=5176.20222307.J_9059755190.2.65504cb3DQB8MW&postId=163421%22">天池龙珠计划SQL训练营 Task01: </a>， 答案仅代表个人观点</em></p>
-<h2 id="3-1"><a href="#3-1" class="headerlink" title="3.1"></a>3.1</h2><p>编写一条 CREATE TABLE 语句，用来创建一个包含表 1-A 中所列各项的表 Addressbook （地址簿），并为 regist_no （注册编号）列设置主键约束</p>
-<p>表1-A　表 Addressbook （地址簿）中的列</p>
-<table>
-<thead>
-<tr>
-<th align="center">列的含义</th>
-<th align="center">列的名称</th>
-<th align="center">数据类型</th>
-<th align="center">约束</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">注册编号</td>
-<td align="center">regist_no</td>
-<td align="center">整形</td>
-<td align="center">不为NULL, 主键</td>
-</tr>
-<tr>
-<td align="center">姓名</td>
-<td align="center">name</td>
-<td align="center">VARCHAR (128)</td>
-<td align="center">不为NULL</td>
-</tr>
-<tr>
-<td align="center">住址</td>
-<td align="center">address</td>
-<td align="center">VARCHAR (256)</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">电话</td>
-<td align="center">tel_no</td>
-<td align="center">CHAR(10)</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">邮箱地址</td>
-<td align="center">mail_address</td>
-<td align="center">CHAR(20)</td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">Table</span> Addressbook</span><br><span class="line">    ( regist_no <span class="type">INTEGER</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> ,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    address <span class="type">VARCHAR</span>(<span class="number">256</span>),</span><br><span class="line">    tel_no <span class="type">CHAR</span>(<span class="number">20</span>),</span><br><span class="line">    mail_address <span class="type">CHAR</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="keyword">PRIMARY</span> key(regist_no)</span><br><span class="line">    ); </span><br></pre></td></tr></table></figure>
-
-<h2 id="3-2"><a href="#3-2" class="headerlink" title="3.2"></a>3.2</h2><p>假设在创建练习1.1中的 Addressbook 表时忘记添加如下一列 postal_code （邮政编码）了，请把此列添加到 Addressbook 表中。</p>
-<p>列名 ： postal_code</p>
-<p>数据类型 ：定长字符串类型（长度为 8）</p>
-<p>约束 ：不能为 NULL</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE Addressbook </span><br><span class="line">    ADD COLUMN (postal_code CHAR(8) NOT NULL);</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-3"><a href="#3-3" class="headerlink" title="3.3"></a>3.3</h2><p>编写 SQL 语句来删除 Addressbook 表。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE TABLE addressbook;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="3-4"><a href="#3-4" class="headerlink" title="3.4"></a>3.4</h2><p>编写 SQL 语句来恢复删除掉的 Addressbook 表。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROLLBACK;</span><br></pre></td></tr></table></figure>
-
+</li>
+<li><p>V-W 模型（V Model and W Model)<br>  <img src="SoftwareEngineer/V_model.png" alt="V_model"><br>  <img src="SoftwareEngineer/W_model.png" alt="W_model"></p>
+<ul>
+<li><p>W 模型是V 模型的演进</p>
+<ol>
+<li>在V 模型中增加软件各开发阶段对应同步进行的测试。</li>
+<li>W 模型中开发是一个“V”型，测试是与此并行的另一个“V”型。基于“尽早地和不断地进行软件测试”的原则，在软件的需求和设计阶段的测试活动遵循IEEE1012-1998《软件验证与确认(V&amp;V)》。</li>
+<li>W 模型强调测试伴随着整个软件开发周期，而且测试的对象不仅仅是程序，需求、功能和设计同样要测试。测试与开发是同步进行的，从而有利于尽早地发现问题。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>快速应用开发型（RAD Model)<br><img src="SoftwareEngineer/RAD.png" alt="RAD"></p>
+</li>
+</ul>
+<ul>
+<li>原型模型（Prototype Model)<br><img src="SoftwareEngineer/prototype.png" alt="Prototype "></li>
+</ul>
+<p>(前端应用常用)</p>
 
                 
             </div>
@@ -792,9 +883,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/08/15/SoftwareEngineer/">
                     <div class="card-image">
@@ -812,9 +904,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -823,6 +915,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -830,7 +923,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2021/08/03/post-SQL-01/">
@@ -860,7 +953,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
